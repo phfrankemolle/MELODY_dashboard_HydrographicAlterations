@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 import numpy as np
+import geopandas as gpd
 from PIL import Image
 
 def resolve_base_path(settings):
@@ -41,6 +42,41 @@ def resolve_base_path(settings):
         str(year),
         filename
     )
+
+def resolve_threshold_gpkg(settings):
+    main = settings["button"]     # Saliniteit, Temperatuur, Snelheid
+    year = settings["year"]
+    var  = settings["variable"]
+
+    if main not in ["Saliniteit", "Temperatuur", "Snelheid"]:
+        return None
+
+    if year in ["Referentie", None]:
+        return None
+
+    # Map variable → suffix
+    var_map = {
+        "Verschil t.o.v. referentie": "diff",
+        "Relatieve verschil t.o.v. referentie": "reldiff",
+        "Verschil stratificatie t.o.v. referentie": "diff",
+        "Relatieve verschil stratificatie t.o.v. referentie": "reldiff",
+    }
+
+    suffix = var_map.get(var)
+    if suffix is None:
+        return None
+
+    # Match your filenames like: polygons27diff.gpkg
+    year_short = year[-2:]  # '2027' → '27'
+
+    filename = f"polygons{year_short}{suffix}.gpkg"
+
+    return os.path.join(
+        "Data2", "Overlay", "threshold",
+        main,
+        filename
+    )
+    
 def resolve_wind_overlay(settings):
     year = settings["year"]
 
@@ -163,7 +199,22 @@ def compose_layers(
     
     img = trim_white_border(img)
     return img
+    
+def compute_threshold_area(gpkg_path, threshold_value):
+    if not gpkg_path or not os.path.exists(gpkg_path):
+        return None
 
+    gdf = gpd.read_file(gpkg_path)
+
+    # Filter by threshold
+    mask = gdf["threshold"] == threshold_value
+
+    selected = gdf[mask]
+
+    # Sum area
+    total_area = selected["area_km"].sum()
+
+    return total_area
 def commit_settings(prefix):
     st.session_state[f"{prefix}_button"] = st.session_state.get(f"{prefix}_button_temp")
     st.session_state[f"{prefix}_year"] = st.session_state.get(f"{prefix}_year_temp")
@@ -398,6 +449,21 @@ def show_sandwave_tool():
             threshold_path = resolve_threshold_overlay(settings_left)
             img = compose_layers(base_path, eez=settings_left["eez"], wind_path=wind_path,threshold_path=threshold_path)
             st.image(img, use_column_width=True)
+
+        if settings_left["overs"] and settings_left["slider"] not in [None, "none"]:
+    
+            gpkg_path = resolve_threshold_gpkg(settings_left)
+    
+            area = compute_threshold_area(
+                gpkg_path,
+                settings_left["slider"]
+            )
+    
+            if area is not None:
+                st.markdown(f"**Totale oppervlakte:** {area:.2f} km²")
+            else:
+                st.caption("Geen oppervlakte beschikbaar")
+
     
     with col2_fig:
         settings_right = {
@@ -417,3 +483,18 @@ def show_sandwave_tool():
             threshold_path = resolve_threshold_overlay(settings_right)
             img = compose_layers(base_path, eez=settings_right["eez"], wind_path=wind_path, threshold_path=threshold_path)
             st.image(img, use_column_width=True)
+
+        if settings_right["overs"] and settings_right["slider"] not in [None, "none"]:
+    
+            gpkg_path = resolve_threshold_gpkg(settings_right)
+    
+            area = compute_threshold_area(
+                gpkg_path,
+                settings_right["slider"]
+            )
+    
+            if area is not None:
+                st.markdown(f"**Totale oppervlakte:** {area:.2f} km²")
+            else:
+                st.caption("Geen oppervlakte beschikbaar")
+
