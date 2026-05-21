@@ -483,7 +483,10 @@ def show_sandwave_tool():
             threshold_path = resolve_threshold_overlay(settings_left)
             img = compose_layers(base_path, eez=settings_left["eez"], wind_path=wind_path,threshold_path=threshold_path)
             st.image(img, use_column_width=True)
-
+        
+        # Always determine gpkg_path (may be None)
+        gpkg_path = None
+        
         if settings_left["overs"] and settings_left["slider"] not in [None, "none"]:
     
             gpkg_path = resolve_threshold_gpkg(settings_left)
