@@ -212,7 +212,7 @@ def compute_threshold_area(gpkg_path, threshold_value):
     selected = gdf[mask]
 
     # Sum area
-    total_area = selected["area_km"].sum()
+    total_area = selected["area_km2"].sum()
 
     return total_area
 def commit_settings(prefix):
