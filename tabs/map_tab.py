@@ -70,10 +70,16 @@ def resolve_threshold_gpkg(settings):
     year_short = year[-2:]  # '2027' → '27'
 
     filename = f"polygons{year_short}{suffix}.gpkg"
-
+    
+    var_folder = var_map.get(var)
+    if var_folder is None:
+        return None
+        
     return os.path.join(
         "Data2", "Overlay", "threshold",
-        main,
+        main,               # ✅ dynamic now
+        str(year),
+        var_folder,
         filename
     )
     
