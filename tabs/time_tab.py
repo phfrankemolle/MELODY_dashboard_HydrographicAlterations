@@ -80,28 +80,28 @@ STATIONS = [
 def show_time_series():
 
     st.subheader("Tijdseries per locatie")
-
-    col1, col2 = st.columns([1, 2])
-
-    with col1:
-        var = st.selectbox(
-            "Variabele",
-            ["Snelheid", "Temperatuur", "Saliniteit"],
-            key="ts_var"
-        )
-
-        station = st.selectbox(
-            "Meetlocatie",
-            STATIONS,
-            key="ts_station"
-        )
-
-    with col2:
-        st.markdown("**Scenario's**")
-
-        scen_ref = st.checkbox("Referentie", value=True, key="ts_ref")
-        scen_2027 = st.checkbox("2027", value=False, key="ts_2027")
-        scen_2040 = st.checkbox("2040", value=False, key="ts_2040")
+    with st.sidebar:
+        col1, col2 = st.columns([1, 2])
+    
+        with col1:
+            var = st.selectbox(
+                "Variabele",
+                ["Snelheid", "Temperatuur", "Saliniteit"],
+                key="ts_var"
+            )
+    
+            station = st.selectbox(
+                "Meetlocatie",
+                STATIONS,
+                key="ts_station"
+            )
+    
+        with col2:
+            st.markdown("**Scenario's**")
+    
+            scen_ref = st.checkbox("Referentie", value=True, key="ts_ref")
+            scen_2027 = st.checkbox("2027", value=False, key="ts_2027")
+            scen_2040 = st.checkbox("2040", value=False, key="ts_2040")
 
     selected_scenarios = []
     if scen_ref:
