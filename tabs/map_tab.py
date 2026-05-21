@@ -345,26 +345,28 @@ def show_sandwave_tool():
     # ---------------------------------------------------------
     # TWO COLUMNS
     # ---------------------------------------------------------
-    col1, col2 = st.columns(2)
+    with st.expander("Show controls", expanded=True):
     
-    # --- FIRST: Render both sets of controls (temporary values) ---
-    with col1:
-        st.subheader("Linker figuur")
-        render_controls("fig1")
-    
-    with col2:
-        st.subheader("Rechter figuur")
-        render_controls("fig2")
-    
-    # --- SECOND: Full-width row for the global Toepassen button ---
-    apply_container = st.container()
-    with apply_container:
-        if st.button("Toepassen", key="apply_both"):
-            commit_settings("fig1")
-            commit_settings("fig2")
-    
-    # --- THIRD: Now read committed values and render figures ---
-    col1_fig, col2_fig = st.columns(2)
+        col1, col2 = st.columns(2)
+        
+        # --- FIRST: Render both sets of controls (temporary values) ---
+        with col1:
+            st.subheader("Linker figuur")
+            render_controls("fig1")
+        
+        with col2:
+            st.subheader("Rechter figuur")
+            render_controls("fig2")
+        
+        # --- SECOND: Full-width row for the global Toepassen button ---
+        apply_container = st.container()
+        with apply_container:
+            if st.button("Toepassen", key="apply_both"):
+                commit_settings("fig1")
+                commit_settings("fig2")
+        
+        # --- THIRD: Now read committed values and render figures ---
+        col1_fig, col2_fig = st.columns(2)
     
     with col1_fig:
         settings_left = {
@@ -384,8 +386,6 @@ def show_sandwave_tool():
             img = compose_layers(base_path, eez=settings_left["eez"], wind_path=wind_path,threshold_path=threshold_path)
             st.image(img, use_column_width=True)
     
-        st.write("Geselecteerde instellingen (links):", settings_left)
-    
     with col2_fig:
         settings_right = {
             "button": st.session_state.get("fig2_button"),
@@ -403,5 +403,3 @@ def show_sandwave_tool():
             threshold_path = resolve_threshold_overlay(settings_right)
             img = compose_layers(base_path, eez=settings_right["eez"], wind_path=wind_path, threshold_path=threshold_path)
             st.image(img, use_column_width=True)
-    
-        st.write("Geselecteerde instellingen (rechts):", settings_right)
