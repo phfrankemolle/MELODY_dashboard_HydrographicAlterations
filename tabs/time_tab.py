@@ -81,7 +81,7 @@ def show_time_series():
 
     st.subheader("Tijdseries per locatie")
     with st.sidebar:
-        col1, col2 = st.columns([1, 2])
+        col1, col2 = st.columns([2, 1])
     
         with col1:
             var = st.selectbox(
