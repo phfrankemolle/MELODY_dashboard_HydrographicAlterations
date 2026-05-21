@@ -544,11 +544,11 @@ def show_sandwave_tool():
             else:
                 st.caption("Geen oppervlakte beschikbaar")
 
-        zip_bytes = build_zip_export(img, gpkg_path)
+        zip_bytes2 = build_zip_export(img, gpkg_path)
         
         st.download_button(
             label="Export map + polygons",
-            data=zip_bytes,
+            data=zip_bytes2,
             file_name = f"{settings_right['button']}_{settings_right['year']}_{settings_right['variable']}.zip",
             mime="application/zip"
         )
