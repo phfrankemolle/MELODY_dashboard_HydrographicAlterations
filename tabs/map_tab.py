@@ -501,8 +501,7 @@ def show_sandwave_tool():
             else:
                 st.caption("Geen oppervlakte beschikbaar")
         # --- ZIP export ---
-        if settings_left["overs"] and settings_left["slider"] not in [None, "none"]:
-            zip_bytes = build_zip_export(img, gpkg_path)
+        zip_bytes = build_zip_export(img, gpkg_path)
         
         st.download_button(
             label="Export map + polygons",
@@ -545,8 +544,7 @@ def show_sandwave_tool():
             else:
                 st.caption("Geen oppervlakte beschikbaar")
 
-        if settings_right["overs"] and settings_right["slider"] not in [None, "none"]:
-            zip_bytes = build_zip_export(img, gpkg_path)
+        zip_bytes = build_zip_export(img, gpkg_path)
         
         st.download_button(
             label="Export map + polygons",
