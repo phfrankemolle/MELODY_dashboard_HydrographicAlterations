@@ -308,12 +308,13 @@ def show_sandwave_tool():
         
         with col1:
             show_wind = st.toggle("Windparken", key=f"{prefix}_wind_temp")
-        
         with col2:
             if show_wind:
                 st.toggle(
                     "🎨",
                     key=f"{prefix}_wind_invert",
+                    label_visibility="collapsed"
+                )   
                 
         st.toggle("Overschrijdingswaarde polygons", key=f"{prefix}_overs_temp")
 
