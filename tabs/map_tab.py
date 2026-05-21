@@ -507,7 +507,8 @@ def show_sandwave_tool():
             label="Export map + polygons",
             data=zip_bytes,
             file_name = f"{settings_left['button']}_{settings_left['year']}_{settings_left['variable']}.zip",
-            mime="application/zip"
+            mime="application/zip",
+            key = "download_left"
         )
 
     
@@ -550,6 +551,7 @@ def show_sandwave_tool():
             label="Export map + polygons",
             data=zip_bytes2,
             file_name = f"{settings_right['button']}_{settings_right['year']}_{settings_right['variable']}.zip",
-            mime="application/zip"
+            mime="application/zip",
+            key = "download_right"
         )
 
