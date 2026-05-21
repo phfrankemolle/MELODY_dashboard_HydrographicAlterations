@@ -353,6 +353,7 @@ def show_sandwave_tool():
         }
 
     st.subheader("Kaarten Nederlandse Noordzee")
+    st.divider()
     # ---------------------------------------------------------
     # TWO COLUMNS
     # ---------------------------------------------------------
