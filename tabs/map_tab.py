@@ -241,21 +241,13 @@ def show_sandwave_tool():
         # --- OPTIONS ---
         button_options = ["Temperatuur", "Saliniteit", "Snelheid", "Bathymetrie"]
 
-        # --- Exclusive button group ---
-        temp_button_key = f"{prefix}_button_temp"
-        selected_temp = st.session_state.get(temp_button_key, button_options[0])
+        
+        selected_temp = st.selectbox(
+            "Parameter",
+            button_options,
+            key=f"{prefix}_button_temp"
+        )
 
-        cols = st.columns(len(button_options))
-        for i, opt in enumerate(button_options):
-
-            # ✔ Add checkmark to active button
-            label = f"✔️ {opt}" if opt == selected_temp else opt
-
-            if cols[i].button(label, key=f"{temp_button_key}_{opt}", use_container_width=True):
-                st.session_state[temp_button_key] = opt
-                selected_temp = opt
-
-        st.caption(f"Geselecteerd: {selected_temp}")
 
         # ---------------------------------------------------------
         # CONDITIONAL SELECTBOX BASED ON BUTTON SELECTION
