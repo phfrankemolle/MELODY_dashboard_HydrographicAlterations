@@ -105,11 +105,11 @@ def show_time_series():
 
     selected_scenarios = []
     if scen_ref:
-        selected_scenarios.append("🔵 Referentie")
+        selected_scenarios.append("Referentie")
     if scen_2027:
-        selected_scenarios.append("🟡 2027")
+        selected_scenarios.append("2027")
     if scen_2040:
-        selected_scenarios.append("🔴 2040")
+        selected_scenarios.append("2040")
 
     st.divider()
 
