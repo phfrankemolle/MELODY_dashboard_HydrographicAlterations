@@ -4,7 +4,10 @@ from tabs.map_tab import show_sandwave_tool
 
 st.set_page_config(layout="wide")
 with st.sidebar:
-    st.header("MELODY maps")
+    st.markdown(
+    "<h2 style='font-size: 36px;'>MELODY Maps</h2>",
+    unsafe_allow_html=True
+    )
     
     tab = st.selectbox(
         "Kies functie",
