@@ -1,4 +1,6 @@
 import streamlit as st
+import zipfile
+import io
 import os
 import numpy as np
 import geopandas as gpd
@@ -221,6 +223,32 @@ def compute_threshold_area(gpkg_path, threshold_value):
     total_area = selected["area_km2"].sum()
 
     return total_area
+
+def build_zip_export(img, gpkg_path=None):
+    """
+    Create an in-memory ZIP containing:
+    - map.png (always)
+    - polygons.gpkg (optional)
+    """
+
+    zip_buffer = io.BytesIO()
+
+    with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zf:
+
+        # --- Add PNG ---
+        img_bytes = io.BytesIO()
+        img.save(img_bytes, format="PNG")
+        zf.writestr("map.png", img_bytes.getvalue())
+
+        # --- Add GPKG (if available) ---
+        if gpkg_path and os.path.exists(gpkg_path):
+            with open(gpkg_path, "rb") as f:
+                zf.writestr("polygons.gpkg", f.read())
+
+    zip_buffer.seek(0)
+    return zip_buffer.getvalue()
+
+
 def commit_settings(prefix):
     st.session_state[f"{prefix}_button"] = st.session_state.get(f"{prefix}_button_temp")
     st.session_state[f"{prefix}_year"] = st.session_state.get(f"{prefix}_year_temp")
@@ -469,6 +497,16 @@ def show_sandwave_tool():
                 st.markdown(f"**Totale oppervlakte:** {area:.2f} km²")
             else:
                 st.caption("Geen oppervlakte beschikbaar")
+        # --- ZIP export ---
+        if settings_left["overs"] and settings_left["slider"] not in [None, "none"]:
+            zip_bytes = build_zip_export(img, gpkg_path)
+        
+        st.download_button(
+            label="Export map + polygons",
+            data=zip_bytes,
+            file_name={button}+"_"+{year}+"_"+{variable}.zip",
+            mime="application/zip"
+        )
 
     
     with col2_fig:
@@ -503,4 +541,14 @@ def show_sandwave_tool():
                 st.markdown(f"**Totale oppervlakte:** {area:.2f} km²")
             else:
                 st.caption("Geen oppervlakte beschikbaar")
+
+        if settings_right["overs"] and settings_right["slider"] not in [None, "none"]:
+            zip_bytes = build_zip_export(img, gpkg_path)
+        
+        st.download_button(
+            label="Export map + polygons",
+            data=zip_bytes,
+            file_name={button}+"_"+{year}+"_"+{variable}.zip",
+            mime="application/zip"
+        )
 
