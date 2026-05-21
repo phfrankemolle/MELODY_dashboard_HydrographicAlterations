@@ -99,17 +99,17 @@ def show_time_series():
         with col2:
             st.markdown("**Scenario's**")
     
-            scen_ref = st.checkbox("Referentie", value=True, key="ts_ref")
-            scen_2027 = st.checkbox("2027", value=False, key="ts_2027")
-            scen_2040 = st.checkbox("2040", value=False, key="ts_2040")
+            scen_ref = st.checkbox("🔵 Referentie", value=True, key="ts_ref")
+            scen_2027 = st.checkbox("🟡 2027", value=False, key="ts_2027")
+            scen_2040 = st.checkbox("🔴 2040", value=False, key="ts_2040")
 
     selected_scenarios = []
     if scen_ref:
-        selected_scenarios.append("Referentie")
+        selected_scenarios.append("🔵 Referentie")
     if scen_2027:
-        selected_scenarios.append("2027")
+        selected_scenarios.append("🟡 2027")
     if scen_2040:
-        selected_scenarios.append("2040")
+        selected_scenarios.append("🔴 2040")
 
     st.divider()
 
