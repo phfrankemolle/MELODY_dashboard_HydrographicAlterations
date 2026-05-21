@@ -345,7 +345,7 @@ def show_sandwave_tool():
     # ---------------------------------------------------------
     # TWO COLUMNS
     # ---------------------------------------------------------
-    with st.popover("Instellingen"):
+    with st.sidebar:
     
         col1, col2 = st.columns(2)
         
