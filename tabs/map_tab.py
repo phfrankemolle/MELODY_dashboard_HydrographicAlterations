@@ -352,6 +352,7 @@ def show_sandwave_tool():
             "variable": st.session_state.get(f"{prefix}_var"),
         }
 
+    st.subheader("Kaarten Nederlandse Noordzee")
     # ---------------------------------------------------------
     # TWO COLUMNS
     # ---------------------------------------------------------
