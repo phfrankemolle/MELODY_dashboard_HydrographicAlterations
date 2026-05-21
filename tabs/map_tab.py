@@ -51,10 +51,15 @@ def resolve_wind_overlay(settings):
     # No wind layer for reference year
     if year in [None, "Referentie"]:
         return None
+    
+    if settings.get("wind_invert"):
+        filename = f"yellow_{year}.png"
+    else:
+        filename = f"{year}.png"
 
     return os.path.join(
         "Data2", "Overlay", "windmill",
-        f"{year}.png"
+        filename
     )
 
 def resolve_threshold_overlay(settings):
@@ -298,7 +303,18 @@ def show_sandwave_tool():
         # TOGGLES (always shown)
         # ---------------------------------------------------------
         st.toggle("EEZ", key=f"{prefix}_eez_temp")
-        st.toggle("Windparken", key=f"{prefix}_wind_temp")
+               
+        col1, col2 = st.columns([3, 1]) #windfarm toggle 
+        
+        with col1:
+            show_wind = st.toggle("Windparken", key=f"{prefix}_wind_temp")
+        
+        with col2:
+            if show_wind:
+                st.toggle(
+                    "🎨",
+                    key=f"{prefix}_wind_invert",
+                
         st.toggle("Overschrijdingswaarde polygons", key=f"{prefix}_overs_temp")
 
 
@@ -329,6 +345,7 @@ def show_sandwave_tool():
             "year": st.session_state.get(f"{prefix}_year"),
             "eez": st.session_state.get(f"{prefix}_eez"),
             "wind": st.session_state.get(f"{prefix}_wind"),
+            "wind_invert": st.session_state.get(f"{prefix}_wind_invert"),
             "overs": st.session_state.get(f"{prefix}_overs"),
             "slider": st.session_state.get(f"{prefix}_slider"),
             "variable": st.session_state.get(f"{prefix}_var"),
@@ -366,6 +383,7 @@ def show_sandwave_tool():
             "year": st.session_state.get("fig1_year"),
             "eez": st.session_state.get("fig1_eez"),
             "wind": st.session_state.get("fig1_wind"),
+            "wind_invert": st.session_state.get(f"{prefix}_wind_invert", False),
             "overs": st.session_state.get("fig1_overs"),
             "slider": st.session_state.get("fig1_slider"),
             "variable": st.session_state.get("fig1_var"),
@@ -384,6 +402,7 @@ def show_sandwave_tool():
             "year": st.session_state.get("fig2_year"),
             "eez": st.session_state.get("fig2_eez"),
             "wind": st.session_state.get("fig2_wind"),
+            "wind_invert": st.session_state.get(f"{prefix}_wind_invert", False),
             "overs": st.session_state.get("fig2_overs"),
             "slider": st.session_state.get("fig2_slider"),
             "variable": st.session_state.get("fig2_var"),
