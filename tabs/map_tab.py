@@ -306,7 +306,7 @@ def show_sandwave_tool():
         # TOGGLES (always shown)
         # ---------------------------------------------------------
         st.toggle("EEZ", key=f"{prefix}_eez_temp")
-        st.toggle("Windmolens", key=f"{prefix}_wind_temp")
+        st.toggle("Windparken", key=f"{prefix}_wind_temp")
         st.toggle("Overschrijdingswaarde polygons", key=f"{prefix}_overs_temp")
 
 
