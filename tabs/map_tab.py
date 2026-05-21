@@ -345,7 +345,7 @@ def show_sandwave_tool():
     # ---------------------------------------------------------
     # TWO COLUMNS
     # ---------------------------------------------------------
-    with st.expander("Show controls", expanded=True):
+    with st.sidebar:
     
         col1, col2 = st.columns(2)
         
@@ -366,7 +366,7 @@ def show_sandwave_tool():
                 commit_settings("fig2")
         
         # --- THIRD: Now read committed values and render figures ---
-        col1_fig, col2_fig = st.columns(2)
+    col1_fig, col2_fig = st.columns(2)
     
     with col1_fig:
         settings_left = {
