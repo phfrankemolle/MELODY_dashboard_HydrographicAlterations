@@ -19,7 +19,7 @@ def about_dialog():
     about()
 
 if st.button("About MELODY"):
-    about_dialogue() #het werkt niet zonder deze extra definitie?
+    about_dialog() #het werkt niet zonder deze extra definitie?
 
 if tab == "Kaarten":
     show_sandwave_tool()
