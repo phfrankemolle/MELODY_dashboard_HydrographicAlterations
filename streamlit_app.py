@@ -13,7 +13,6 @@ with st.sidebar:
         "Kies functie",
         ["Kaarten", "Tijdreeksen"]
     )
-
 @st.dialog("About MELODY")
 if st.button("About MELODY"):
     about()
