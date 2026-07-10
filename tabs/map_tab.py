@@ -471,9 +471,6 @@ def show_sandwave_tool():
             "slider": st.session_state.get(f"{prefix}_slider"),
             "variable": st.session_state.get(f"{prefix}_var"),
         }
-
-    st.subheader("Kaarten Nederlandse Noordzee")
-    st.divider()
     # ---------------------------------------------------------
     # TWO COLUMNS
     # ---------------------------------------------------------
