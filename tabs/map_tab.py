@@ -380,13 +380,17 @@ def show_sandwave_tool():
             st.info(temp_saliniteit_desc[selected_vars])
 
         elif selected_temp == "Snelheid":
-            selected_vars= st.selectbox(
-                "Variabele",
-                snelheid_vars,
-                key=f"{prefix}_var_temp"
-            )
+            col1, col2 = st.columns([4, 1])
+            with col1:
+                selected_vars= st.selectbox(
+                    "Variabele",
+                    snelheid_vars,
+                    key=f"{prefix}_var_temp"
+                )
+            with col2:
+                    with st.popover("ℹ️"):
+                        st.write(snelheid_desc[selected_vars])
 
-            st.info(snelheid_desc[selected_vars])
 
         # Bathymetrie → no selectbox
 
