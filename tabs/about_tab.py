@@ -8,4 +8,4 @@ def about():
   
   st.header("Waar komt de data vandaan?")
   st.write("Het dashboard haalt data uit openbaar toegankelijke datasets (bathymetrie van GEBCO, wind turbine locaties via NSEC, en sommige tijdsreeksen van RWS waterinfo) en is deels gemodelleerd. Saliniteit, temperatuur en residuele stromingen worden berekend via een aangepaste versie van het 3D Dutch Continental Shelf Model met een variabel grid (3D DCSM-FM), dat wordt geforceerd met getij, windvelden, zonnestraling, temperatuur en saliniteit, maar zonder de invloed van zeespiegelstijging. Wind turbines worden toegevoegd aan het model door de schuifspanning door de wind aan het oppervlakte te veranderen. De forceringsdata is voor alle scenarios gekozen als de situatie in Juli 2013 en geeft bruikbare resultaten over de tijdspan van twee spring- en doodtij cycli. Deze worden vervolgens gemiddeld over de tijd en verwerkt tot kaarten.")
-  st.write("Wil je meer weten over het MELODY project? Ga dan naar https://melody-research.nl/" !)
+  st.write('Wil je meer weten over het MELODY project? Ga dan naar https://melody-research.nl/ '!)
