@@ -364,7 +364,7 @@ def show_sandwave_tool():
             "Verschil t.o.v. referentie",
             "Relatieve verschil stratificatie t.o.v. referentie"
         ]
-       snelheid_desc = {
+        snelheid_desc = {
             "Bodem": "Magnitude van de residuele bodemsnelheid",
             "Verschil stratificatie t.o.v. referentie": "Het verschil tussen de residuele bodemsnelheid in het gekozen jaar en het referentiejaar (2012)-> (jaar-ref)",
             "Relatieve verschil stratificatie t.o.v. referentie": "Het relatieve verschil tussen de stratificatie in het gekozen jaar en het referentiejaar (2012)-> (jaar-ref)/ref",
