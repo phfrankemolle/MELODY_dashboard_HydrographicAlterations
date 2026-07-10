@@ -388,6 +388,7 @@ def show_sandwave_tool():
                     key=f"{prefix}_var_temp"
                 )
             with col2:
+                    st.write("") #empty space for allignment
                     with st.popover("ℹ️"):
                         st.write(snelheid_desc[selected_vars])
 
