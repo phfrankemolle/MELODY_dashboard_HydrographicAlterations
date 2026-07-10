@@ -14,7 +14,8 @@ with st.sidebar:
         ["Kaarten", "Tijdreeksen"]
     )
 
-if st.button("ℹ️", help="About MELODY"):
+@st.dialog("About MELODY")
+if st.button("About MELODY"):
     about()
 
 if tab == "Kaarten":
