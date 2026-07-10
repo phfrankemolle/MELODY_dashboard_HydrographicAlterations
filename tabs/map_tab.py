@@ -340,7 +340,7 @@ def show_sandwave_tool():
         col1, col2 = st.columns([4, 1])
         with col1:
             selected_temp = st.selectbox(
-                "Parameter",
+                "Fysische parameter",
                 button_options,
                 key=f"{prefix}_button_temp"
             )
@@ -386,7 +386,7 @@ def show_sandwave_tool():
             col1, col2 = st.columns([4, 1])
             with col1:
                 selected_vars = st.selectbox(
-                    "Variabele",
+                    "Indicator",
                     temp_saliniteit_vars,
                     key=f"{prefix}_var_temp"
                 )
@@ -398,7 +398,7 @@ def show_sandwave_tool():
             col1, col2 = st.columns([4, 1])
             with col1:
                 selected_vars= st.selectbox(
-                    "Variabele",
+                    "Indicator",
                     snelheid_vars,
                     key=f"{prefix}_var_temp"
                 )
