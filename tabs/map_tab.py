@@ -350,12 +350,25 @@ def show_sandwave_tool():
             "Verschil stratificatie t.o.v. referentie",
             "Relatieve verschil stratificatie t.o.v. referentie"
         ]
+        
+        temp_saliniteit_desc = {
+            "Oppervlakte": "Gemiddelde waarde in de waterkolom vlak onder het wateroppervlak",
+            "Bodem": "Gemiddelde waarde in de waterkolom vlak boven de bodem",
+            "Stratificatie": "Verschil tussen de gemiddelde waardes van de boven en onder laag",
+            "Verschil stratificatie t.o.v. referentie": "Het verschil tussen de stratificatie in het gekozen jaar en het referentiejaar (2012)-> (jaar-ref)",
+            "Relatieve verschil stratificatie t.o.v. referentie": "Het relatieve verschil tussen de stratificatie in het gekozen jaar en het referentiejaar (2012)-> (jaar-ref)/ref",
+        }
 
         snelheid_vars = [
             "Bodem",
             "Verschil t.o.v. referentie",
             "Relatieve verschil stratificatie t.o.v. referentie"
         ]
+       snelheid_desc = {
+            "Bodem": "Magnitude van de residuele bodemsnelheid",
+            "Verschil stratificatie t.o.v. referentie": "Het verschil tussen de residuele bodemsnelheid in het gekozen jaar en het referentiejaar (2012)-> (jaar-ref)",
+            "Relatieve verschil stratificatie t.o.v. referentie": "Het relatieve verschil tussen de stratificatie in het gekozen jaar en het referentiejaar (2012)-> (jaar-ref)/ref",
+        }
 
         # Only show selectbox for these buttons
         if selected_temp in ["Temperatuur", "Saliniteit"]:
@@ -364,6 +377,7 @@ def show_sandwave_tool():
                 temp_saliniteit_vars,
                 key=f"{prefix}_var_temp"
             )
+            st.info(temp_saliniteit_desc[temp_saliniteit_vars])
 
         elif selected_temp == "Snelheid":
             st.selectbox(
@@ -371,6 +385,7 @@ def show_sandwave_tool():
                 snelheid_vars,
                 key=f"{prefix}_var_temp"
             )
+            st.info(snelheid_desc[snelheid_vars])
 
         # Bathymetrie → no selectbox
 
