@@ -372,20 +372,21 @@ def show_sandwave_tool():
 
         # Only show selectbox for these buttons
         if selected_temp in ["Temperatuur", "Saliniteit"]:
-            st.selectbox(
+            selected_vars = st.selectbox(
                 "Variabele",
                 temp_saliniteit_vars,
                 key=f"{prefix}_var_temp"
             )
-            st.info(temp_saliniteit_desc[temp_saliniteit_vars])
+            st.info(temp_saliniteit_desc[selected_vars])
 
         elif selected_temp == "Snelheid":
-            st.selectbox(
+            selected_vars= st.selectbox(
                 "Variabele",
                 snelheid_vars,
                 key=f"{prefix}_var_temp"
             )
-            st.info(snelheid_desc[snelheid_vars])
+
+            st.info(snelheid_desc[selected_vars])
 
         # Bathymetrie → no selectbox
 
