@@ -372,13 +372,17 @@ def show_sandwave_tool():
 
         # Only show selectbox for these buttons
         if selected_temp in ["Temperatuur", "Saliniteit"]:
-            selected_vars = st.selectbox(
-                "Variabele",
-                temp_saliniteit_vars,
-                key=f"{prefix}_var_temp"
-            )
-            st.info(temp_saliniteit_desc[selected_vars])
-
+            col1, col2 = st.columns([4, 1])
+            with col1:
+                selected_vars = st.selectbox(
+                    "Variabele",
+                    temp_saliniteit_vars,
+                    key=f"{prefix}_var_temp"
+                )
+            with col2:
+                    with st.popover("ℹ️"):
+                        st.write(temp_saliniteit_desc[selected_vars])
+        
         elif selected_temp == "Snelheid":
             col1, col2 = st.columns([4, 1])
             with col1:
@@ -388,7 +392,6 @@ def show_sandwave_tool():
                     key=f"{prefix}_var_temp"
                 )
             with col2:
-                    st.write("") #empty space for allignment
                     with st.popover("ℹ️"):
                         st.write(snelheid_desc[selected_vars])
 
