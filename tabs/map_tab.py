@@ -330,13 +330,24 @@ def show_sandwave_tool():
 
         # --- OPTIONS ---
         button_options = ["Temperatuur", "Saliniteit", "Snelheid", "Bathymetrie"]
+        var_desc = {
+        "Temperatuur": r"Gemodelleerde gemiddelde temperatuur ($^o$C)",
+        "Saliniteit": "Gemodelleerde gemiddelde saliniteit (psu)",
+        "Snelheid": "Gemodelleerde magnitude van gemiddelde residuele bodemsnelheid (m/s)",
+        "Bathymetrie": "Bathymetrie van de Nederlandse Noordzee van GEBCO t.o.v. MSL - november 2025 (m)",    
+        }
 
-        
-        selected_temp = st.selectbox(
-            "Parameter",
-            button_options,
-            key=f"{prefix}_button_temp"
-        )
+        col1, col2 = st.columns([4, 1])
+        with col1:
+            selected_temp = st.selectbox(
+                "Parameter",
+                button_options,
+                key=f"{prefix}_button_temp"
+            )
+        with col2:
+            with st.popover("ℹ️"):
+                st.write(var_desc[selected_temp])
+            
 
 
         # ---------------------------------------------------------
