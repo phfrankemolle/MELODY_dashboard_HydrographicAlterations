@@ -1,5 +1,5 @@
 import streamlit as st
-def(about):
+def about():
   st.title("About MELODY (and MELODY maps)")
   st.write("MELODY is een research project uitgevoerd aan e Universeit Twente. De afkorting staat voor ModEling LOwer Shoreface Seabed DYnamics for a climate-proof coast, en heeft funding van de NWO. Het MELODY-project focust op beter begrip van morphodynamica aan de diepe vooroever. De diepe vooroever valt samen met de zone waarin golven oplopen en vervormen, wat in het engels 'shoaling' wordt genoemd.")
   
