@@ -7,10 +7,10 @@ st.set_page_config(layout="wide")
 col1, col2 = st.columns([10, 1])
 with col1:
     with st.sidebar:
-    st.markdown(
-    "<h2 style='font-size: 36px;'>MELODY Maps</h2>",
-    unsafe_allow_html=True
-    )
+        st.markdown(
+        "<h2 style='font-size: 36px;'>MELODY Maps</h2>",
+        unsafe_allow_html=True
+        )
 
 with col2:
     if st.button("ℹ️", help="About MELODY"):
