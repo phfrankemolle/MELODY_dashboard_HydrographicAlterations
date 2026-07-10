@@ -14,7 +14,7 @@ with st.sidebar:
         ["Kaarten", "Tijdreeksen"]
     )
     
-@st.dialog("About MELODY")
+@st.dialog("About MELODY", width="large")
 def about_dialog():
     about()
 
