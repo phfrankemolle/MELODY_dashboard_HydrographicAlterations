@@ -348,7 +348,7 @@ def show_sandwave_tool():
             "Bodem",
             "Stratificatie",
             "Verschil stratificatie t.o.v. referentie",
-            "Relatieve verschil stratificatie t.o.v. referentie"
+            "Relatieve verschil stratificatie t.o.v. referentie",
         ]
         
         temp_saliniteit_desc = {
