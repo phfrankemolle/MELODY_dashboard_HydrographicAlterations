@@ -79,7 +79,7 @@ def resolve_threshold_gpkg(settings):
         
     return os.path.join(
         "Data2", "Overlay", "threshold",
-        main,               # ✅ dynamic now
+        main,               #  dynamic now
         str(year),
         var_folder,
         filename
@@ -144,7 +144,7 @@ def resolve_threshold_overlay(settings):
 
     return os.path.join(
         "Data2", "Overlay", "threshold",
-        main,               # ✅ dynamic now
+        main,               #  dynamic now
         str(year),
         var_folder,
         f"th_{overs}.png"
@@ -345,7 +345,7 @@ def show_sandwave_tool():
                 key=f"{prefix}_button_temp"
             )
         with col2:
-            with st.popover("ℹ️"):
+            with st.popover("i"):
                 st.write(var_desc[selected_temp])
             
 
@@ -391,7 +391,7 @@ def show_sandwave_tool():
                     key=f"{prefix}_var_temp"
                 )
             with col2:
-                    with st.popover("ℹ️"):
+                    with st.popover("i"):
                         st.write(temp_saliniteit_desc[selected_vars])
         
         elif selected_temp == "Snelheid":
@@ -403,7 +403,7 @@ def show_sandwave_tool():
                     key=f"{prefix}_var_temp"
                 )
             with col2:
-                    with st.popover("ℹ️"):
+                    with st.popover("i"):
                         st.write(snelheid_desc[selected_vars])
 
 
