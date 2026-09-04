@@ -125,7 +125,7 @@ def show_time_series():
     img = stack_timeseries_images(paths)
 
     if img:
-        st.image(img, use_column_width=True)
+        st.image(img, width = 'stretch')
     else:
         st.warning("Geen tijdseries beschikbaar voor deze combinatie.")
         st.caption(paths)
