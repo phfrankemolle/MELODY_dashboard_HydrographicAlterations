@@ -438,13 +438,15 @@ def show_sandwave_tool():
         with col1:
             st.selectbox(
                 "Scenario",
-                list(scen_map.keys())
+                list(scen_map.keys()),
+                key=f"{prefix}_scenario_temp"
             )
     
         with col2:    
             st.selectbox(
                 "Scenario year",
-                list(scen_y_map.keys())
+                list(scen_y_map.keys()),
+                key=f"{prefix}_year_temp"
             )
 
         # ---------------------------------------------------------
