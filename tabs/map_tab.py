@@ -214,7 +214,7 @@ def compose_layers(settings,
         overlay = Image.open(data_root(settings) + "/Overlay/eez/eez.png").convert("RGBA")
         img = Image.alpha_composite(img, overlay)
 
-    # 2. Wind farms
+    # 2. Offshore Windparken
     if wind_path and os.path.exists(wind_path):
         overlay = Image.open(wind_path).convert("RGBA")
         img = Image.alpha_composite(img, overlay)
@@ -288,7 +288,7 @@ def show_sandwave_tool():
     defa_but= "Temperatuur"
     defa_var= "Verschil stratificatie t.o.v. referentie"
     defa_yr = "2027"
-    defa_scen ="Wind Farms"
+    defa_scen ="Offshore Windparken"
     if "fig1_button" not in st.session_state:
         st.session_state["fig1_button"] = defa_but
     if "fig2_button" not in st.session_state:
