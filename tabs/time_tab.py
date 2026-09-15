@@ -143,7 +143,15 @@ def show_time_series():
     img = stack_timeseries_images(paths)
 
     if img:
-        st.image(img, width = 'stretch')
+        MAX_HEIGHT = 900
+        
+        if img.height > MAX_HEIGHT:
+            scale = MAX_HEIGHT / img.height
+            img = img.resize(
+                (int(img.width * scale), MAX_HEIGHT)
+            )
+        
+        st.image(img)
     else:
         st.warning("Geen tijdseries beschikbaar voor deze combinatie.")
         st.caption(paths)
