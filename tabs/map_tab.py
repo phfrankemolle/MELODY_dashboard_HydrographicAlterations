@@ -15,10 +15,10 @@ from PIL import Image
 
 def data_root(settings):
     scen_map = {
-        "Wind Farms": "WindFarm",
-        "Sand Pits": "SandPit",
+        "Windmolens": "WindFarm",
+        "Zand putten": "SandPit",
         }
-    scenario = settings.get("scenario") or "Wind Farms"
+    scenario = settings.get("scenario") or "Windmolens"
     return os.path.join("Data2", scen_map[scenario])
 
 def resolve_base_path(settings):
@@ -436,8 +436,8 @@ def show_sandwave_tool():
         # DROPDOWN (always shown)
         # ---------------------------------------------------------
         scen_map = {
-        "Wind Farms": "WindFarm",
-        "Sand Pits": "SandPit",
+        "Windmolens": "WindFarm",
+        "Zand putten": "SandPit",
         }
         scen_y_map = {
         "2012": "ref",
