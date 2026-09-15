@@ -423,18 +423,20 @@ def show_sandwave_tool():
         # ---------------------------------------------------------
         # DROPDOWN (always shown)
         # ---------------------------------------------------------
-        st.selectbox(
-            "Scenario",
-            ["WindFarm", "SandPit"],
-            key=f"{prefix}_scenario_temp"
-        )
+        col1, col2 = st.columns([2,2])
+        with col1:
+            st.selectbox(
+                "Scenario",
+                ["Wind Farms", "Sand Pits"],
+                key=f"{prefix}_scenario_temp"
+            )
     
-            
-        st.selectbox(
-            "Scenario year",
-            ["ref", "2027", "2040"],
-            key=f"{prefix}_year_temp"
-        )
+        with col2:    
+            st.selectbox(
+                "Scenario year",
+                ["ref", "2027", "2040"],
+                key=f"{prefix}_year_temp"
+            )
 
         # ---------------------------------------------------------
         # TOGGLES (always shown)
