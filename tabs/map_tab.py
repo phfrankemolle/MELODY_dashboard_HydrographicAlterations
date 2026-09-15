@@ -565,29 +565,29 @@ def show_sandwave_tool():
         # --- THIRD: Now read committed values and render figures ---
 
     col1_tit1, col2_tit1 = st.columns(2) #title column 1
-        with col1_tit1:
-            if st.session_state.get("fig1_button") == "Bathymetrie":
-                st.empty()
-            else:
-                st.write(st.session_state.get("fig1_scenario")+" "+st.session_state.get("fig1_year") +";")
-
-        with col2_tit1:
-            if st.session_state.get("fig1_button") == "Bathymetrie":
+    with col1_tit1:
+        if st.session_state.get("fig1_button") == "Bathymetrie":
             st.empty()
         else:
             st.write(st.session_state.get("fig1_scenario")+" "+st.session_state.get("fig1_year") +";")
-    col1_tit, col2_tit = st.columns(2) #title column 1
-        with col1_tit:
-            if st.session_state.get("fig2_button") == "Bathymetrie":
-                st.write(st.session_state.get("fig2_button")+" van scenario "+st.session_state.get("fig2_scenario")+" "+st.session_state.get("fig2_year"))
-            else:
-                st.write(st.session_state.get("fig2_button")+" "+st.session_state.get("fig2_var"))
 
-        with col2_tit:
-            if st.session_state.get("fig2_button") == "Bathymetrie":
-                st.write(st.session_state.get("fig2_button")+" van scenario "+st.session_state.get("fig2_scenario")+" "+st.session_state.get("fig2_year"))
-            else:
-                st.write(st.session_state.get("fig2_button")+" "+st.session_state.get("fig2_var"))
+    with col2_tit1:
+        if st.session_state.get("fig1_button") == "Bathymetrie":
+        st.empty()
+    else:
+        st.write(st.session_state.get("fig1_scenario")+" "+st.session_state.get("fig1_year") +";")
+    col1_tit, col2_tit = st.columns(2) #title column 1
+    with col1_tit:
+        if st.session_state.get("fig2_button") == "Bathymetrie":
+            st.write(st.session_state.get("fig2_button")+" van scenario "+st.session_state.get("fig2_scenario")+" "+st.session_state.get("fig2_year"))
+        else:
+            st.write(st.session_state.get("fig2_button")+" "+st.session_state.get("fig2_var"))
+
+    with col2_tit:
+        if st.session_state.get("fig2_button") == "Bathymetrie":
+            st.write(st.session_state.get("fig2_button")+" van scenario "+st.session_state.get("fig2_scenario")+" "+st.session_state.get("fig2_year"))
+        else:
+            st.write(st.session_state.get("fig2_button")+" "+st.session_state.get("fig2_var"))
     
     col1_fig, col2_fig = st.columns(2)
     
