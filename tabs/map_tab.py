@@ -577,8 +577,8 @@ def show_sandwave_tool():
             "variable": st.session_state.get("fig1_var"),
             "scenario": st.session_state.get("fig1_scenario")
         }
-        st.write(st.session_state.get("fig1_scenario")+" "+st.session_state.get("fig1_year") +", "
-        +st.session_state.get("fig1_var")+" "+st.session_state.get("fig1_button"))
+        st.write(st.session_state.get("fig1_scenario")+" "+st.session_state.get("fig1_year") +";")
+        st.write(st.session_state.get("fig1_button")+" "+st.session_state.get("fig1_var"))
         if settings_left["button"] and settings_left["year"]:
             base_path = resolve_base_path(settings_left)
             wind_path = resolve_wind_overlay(settings_left)
@@ -626,8 +626,8 @@ def show_sandwave_tool():
             "variable": st.session_state.get("fig2_var"),
             "scenario": st.session_state.get("fig2_scenario")
         }
-        st.write(st.session_state.get("fig2_scenario")+" "+st.session_state.get("fig2_year") +", "
-        +st.session_state.get("fig2_var")+" "+st.session_state.get("fig2_button"))
+        st.write(st.session_state.get("fig2_scenario")+" "+st.session_state.get("fig2_year") +";")
+        st.write(st.session_state.get("fig2_button")+" "+st.session_state.get("fig2_var"))
         if settings_right["button"] and settings_right["year"]:
             base_path = resolve_base_path(settings_right)
             wind_path = resolve_wind_overlay(settings_right)
