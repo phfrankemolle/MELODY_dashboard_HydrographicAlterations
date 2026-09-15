@@ -18,7 +18,7 @@ def data_root(settings):
         "Wind Farms": "WindFarm",
         "Sand Pits": "SandPit",
         }
-    scenario = settings.get("scenario")
+    scenario = settings.get("scenario") or "Wind Farms"
     return os.path.join("Data2", scen_map[scenario])
 
 def resolve_base_path(settings):
