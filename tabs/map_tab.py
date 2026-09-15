@@ -377,13 +377,29 @@ def show_sandwave_tool():
         # CONDITIONAL SELECTBOX BASED ON BUTTON SELECTION
         # ---------------------------------------------------------
 
+        selected_year = st.session_state.get(f"{prefix}_year_temp")
+
         temp_saliniteit_vars = [
             "Oppervlakte",
             "Bodem",
             "Stratificatie",
-            "Verschil stratificatie t.o.v. referentie",
-            "Relatieve verschil stratificatie t.o.v. referentie",
         ]
+        
+        if selected_year != "2012":
+            temp_saliniteit_vars.extend([
+                "Verschil stratificatie t.o.v. referentie",
+                "Relatieve verschil stratificatie t.o.v. referentie",
+            ])
+        
+        snelheid_vars = [
+            "Bodem",
+        ]
+        
+        if selected_year != "2012":
+            snelheid_vars.extend([
+                "Verschil t.o.v. referentie",
+                "Relatieve verschil t.o.v. referentie"
+            ])
         
         temp_saliniteit_desc = {
             "Oppervlakte": "Gemiddelde waarde in de waterkolom vlak onder het wateroppervlak",
