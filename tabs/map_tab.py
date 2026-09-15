@@ -424,6 +424,10 @@ def show_sandwave_tool():
         if selected_temp in ["Temperatuur", "Saliniteit"]:
             col1, col2 = st.columns([4, 1])
             with col1:
+                current_var = st.session_state.get(f"{prefix}_var_temp")
+                if current_var not in temp_saliniteit_vars:
+                    st.session_state[f"{prefix}_var_temp"] = temp_saliniteit_vars[0]
+                    
                 selected_vars = st.selectbox(
                     "Indicator",
                     temp_saliniteit_vars,
@@ -436,6 +440,11 @@ def show_sandwave_tool():
         elif selected_temp == "Snelheid":
             col1, col2 = st.columns([4, 1])
             with col1:
+                current_var = st.session_state.get(f"{prefix}_var_temp")
+                
+                if current_var not in snelheid_vars:
+                    st.session_state[f"{prefix}_var_temp"] = snelheid_vars[0]
+                
                 selected_vars= st.selectbox(
                     "Indicator",
                     snelheid_vars,
