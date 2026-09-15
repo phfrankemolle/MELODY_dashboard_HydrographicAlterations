@@ -24,7 +24,7 @@ def resolve_base_path(settings):
 
     # Bathymetrie is simple
     if main == "Bathymetrie":
-        return "Data2/Base/Bathymetrie/Bathy.png"
+        return data_root(settings) + "/Base/Bathymetrie/Bathy.png"
 
     # Map UI variable → filename suffix
     var_map = {
@@ -203,7 +203,7 @@ def compose_layers(
 
     # 1. EEZ
     if eez:
-        overlay = Image.open("Data2/Overlay/eez/eez.png").convert("RGBA")
+        overlay = Image.open(data_root(settings) + "/Overlay/eez/eez.png").convert("RGBA")
         img = Image.alpha_composite(img, overlay)
 
     # 2. Wind farms
