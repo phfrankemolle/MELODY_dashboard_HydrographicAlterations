@@ -563,6 +563,32 @@ def show_sandwave_tool():
                 commit_settings("fig2")
         
         # --- THIRD: Now read committed values and render figures ---
+
+    col1_tit1, col2_tit1 = st.columns(2) #title column 1
+        with col1_tit1:
+            if st.session_state.get("fig1_button") == "Bathymetrie":
+                st.empty()
+            else:
+                st.write(st.session_state.get("fig1_scenario")+" "+st.session_state.get("fig1_year") +";")
+
+        with col2_tit1:
+            if st.session_state.get("fig1_button") == "Bathymetrie":
+            st.empty()
+        else:
+            st.write(st.session_state.get("fig1_scenario")+" "+st.session_state.get("fig1_year") +";")
+    col1_tit, col2_tit = st.columns(2) #title column 1
+        with col1_tit:
+            if st.session_state.get("fig2_button") == "Bathymetrie":
+                st.write(st.session_state.get("fig2_button")+" van scenario "+st.session_state.get("fig2_scenario")+" "+st.session_state.get("fig2_year"))
+            else:
+                st.write(st.session_state.get("fig2_button")+" "+st.session_state.get("fig2_var"))
+
+        with col2_tit:
+            if st.session_state.get("fig2_button") == "Bathymetrie":
+                st.write(st.session_state.get("fig2_button")+" van scenario "+st.session_state.get("fig2_scenario")+" "+st.session_state.get("fig2_year"))
+            else:
+                st.write(st.session_state.get("fig2_button")+" "+st.session_state.get("fig2_var"))
+    
     col1_fig, col2_fig = st.columns(2)
     
     with col1_fig:
@@ -577,12 +603,7 @@ def show_sandwave_tool():
             "variable": st.session_state.get("fig1_var"),
             "scenario": st.session_state.get("fig1_scenario")
         }
-        if st.session_state.get("fig1_button") == "Bathymetrie":
-            st.empty()
-            st.write(st.session_state.get("fig1_button")+" van scenario "+st.session_state.get("fig1_scenario")+" "+st.session_state.get("fig1_year"))
-        else:
-            st.write(st.session_state.get("fig1_scenario")+" "+st.session_state.get("fig1_year") +";")
-            st.write(st.session_state.get("fig1_button")+" "+st.session_state.get("fig1_var"))
+
         if settings_left["button"] and settings_left["year"]:
             base_path = resolve_base_path(settings_left)
             wind_path = resolve_wind_overlay(settings_left)
