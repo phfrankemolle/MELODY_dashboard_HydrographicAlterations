@@ -53,7 +53,8 @@ def resolve_base_path(settings):
     # Build filename based on your pattern:
 
 
-    filename = f"{prefix}_{year}_{suffix}.png"
+    year_token = "ref" if year == "2012" else year
+    filename = f"{prefix}_{year_token}_{suffix}.png"
 
     return os.path.join(
         data_root(settings), "Base",
