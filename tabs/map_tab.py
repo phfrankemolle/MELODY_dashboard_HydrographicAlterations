@@ -14,8 +14,8 @@ import geopandas as gpd
 from PIL import Image
 
 def data_root(settings):
-    scenario = settings.get("scenario", "WindFarm")  # switch to base data layer (when choosing 'scenario' setting)
-    return os.path.join("Data2", scenario)
+    scen = settings.get("scenario", "WindFarm")  # switch to base data layer (when choosing 'scenario' setting)
+    return os.path.join("Data2", scen)
 
 def resolve_base_path(settings):
     main = settings["button"]          # Temperatuur, Saliniteit, Bathymetrie
@@ -586,7 +586,7 @@ def show_sandwave_tool():
             "overs": st.session_state.get("fig2_overs"),
             "slider": st.session_state.get("fig2_slider"),
             "variable": st.session_state.get("fig2_var"),
-            "scenario": st.session_state.get("fig1_scenario")
+            "scenario": st.session_state.get("fig2_scenario")
         }
     
         if settings_right["button"] and settings_right["year"]:
