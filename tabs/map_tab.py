@@ -14,7 +14,12 @@ import geopandas as gpd
 from PIL import Image
 
 def data_root(settings):
-    return os.path.join("Data2", settings["scenario"])
+    scen_map = {
+        "Wind Farms": "WindFarm",
+        "Sand Pits": "SandPit",
+        }
+    scenario = settings.get("scenario")
+    return os.path.join("Data2", scen_map[scenario])
 
 def resolve_base_path(settings):
     main = settings["button"]          # Temperatuur, Saliniteit, Bathymetrie
