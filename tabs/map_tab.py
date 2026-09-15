@@ -578,7 +578,7 @@ def show_sandwave_tool():
             "variable": st.session_state.get("fig1_var"),
             "scenario": st.session_state.get("fig1_scenario")
         }
-        if st.session_state.get("fig1_button") == "Bathymetrie":
+        if st.session_state.get("fig1_button_temp") == "Bathymetrie":
             st.write(st.session_state.get("fig1_button")+" van scenario "+st.session_state.get("fig1_scenario")+" "+st.session_state.get("fig1_year"))
         else:
             st.write(st.session_state.get("fig1_scenario")+" "+st.session_state.get("fig1_year") +";")
