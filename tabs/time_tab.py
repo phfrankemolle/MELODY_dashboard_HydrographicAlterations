@@ -7,7 +7,7 @@ SCEN_MAP = {
     "2027": "2027",
     "2040": "2040",
 }
-SCENARIO_MAP{
+SCENARIO_MAP = {
     "Wind Farms": "WindFarm",
     "Sand Pits": "SandPit",
 }
