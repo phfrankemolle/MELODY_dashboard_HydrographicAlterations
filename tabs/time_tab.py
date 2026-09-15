@@ -137,6 +137,18 @@ def show_time_series():
                 STATIONS,
                 key="ts_station"
             )
+            station_img = os.path.join(
+                "Data2",
+                "WindFarm",
+                "Time",
+                "Stations",
+                f"{station}.jpg"
+            )
+        
+            if os.path.exists(station_img):
+                img_station = Image.open(station_img).convert("RGBA")
+                img_station = trim_white_border(img_station)
+                st.image(img_station, use_container_width=True)
     
         with col2:
             st.markdown("**Scenario's**")
@@ -145,18 +157,6 @@ def show_time_series():
             scen_2027 = st.checkbox("🟡 2027", value=False, key="ts_2027")
             scen_2040 = st.checkbox("🔴 2040", value=False, key="ts_2040")
         #PLOTTING THE STATION IMAGES
-        station_img = os.path.join(
-            "Data2",
-            "WindFarm",
-            "Time",
-            "Stations",
-            f"{station}.jpg"
-        )
-        
-        if os.path.exists(station_img):
-            img_station = Image.open(station_img).convert("RGBA")
-            img_station = trim_white_border(img_station)
-            st.image(img_station, use_container_width=True)
 
     selected_scenarios = []
     if scen_ref:
