@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Sep 15 11:04:48 2026
+
+@author: FrankemollePFVW
+"""
+
 import streamlit as st
 import zipfile
 import io
@@ -5,6 +12,10 @@ import os
 import numpy as np
 import geopandas as gpd
 from PIL import Image
+
+def data_root(settings):
+    scenario = settings.get("scenario", "WindFarm")  # switch to base data layer (when choosing 'scenario' setting)
+    return os.path.join(data_root(settings), scenario)
 
 def resolve_base_path(settings):
     main = settings["button"]          # Temperatuur, Saliniteit, Bathymetrie
@@ -39,7 +50,7 @@ def resolve_base_path(settings):
     filename = f"{prefix}_{year}_{suffix}.png"
 
     return os.path.join(
-        "Data2", "Base",
+        data_root(settings), "Base",
         main,
         str(year),
         filename
@@ -78,7 +89,7 @@ def resolve_threshold_gpkg(settings):
         return None
         
     return os.path.join(
-        "Data2", "Overlay", "threshold",
+        data_root(settings), "Overlay", "threshold",
         main,               #  dynamic now
         str(year),
         var_folder,
@@ -87,7 +98,6 @@ def resolve_threshold_gpkg(settings):
     
 def resolve_wind_overlay(settings):
     year = settings["year"]
-
     # Toggle off → no overlay
     if not settings.get("wind"):
         return None
@@ -102,11 +112,12 @@ def resolve_wind_overlay(settings):
         filename = f"{year}.png"
 
     return os.path.join(
-        "Data2", "Overlay", "windmill",
+        data_root(settings), "Overlay", "windmill",
         filename
     )
 
 def resolve_threshold_overlay(settings):
+    
     main = settings["button"]       # Saliniteit / Temperatuur
     year = settings["year"]
     var = settings["variable"]
@@ -143,7 +154,7 @@ def resolve_threshold_overlay(settings):
         return None
 
     return os.path.join(
-        "Data2", "Overlay", "threshold",
+        data_root(settings), "Overlay", "threshold",
         main,               #  dynamic now
         str(year),
         var_folder,
@@ -256,7 +267,7 @@ def commit_settings(prefix):
     st.session_state[f"{prefix}_wind"] = st.session_state.get(f"{prefix}_wind_temp")
     st.session_state[f"{prefix}_overs"] = st.session_state.get(f"{prefix}_overs_temp")
     st.session_state[f"{prefix}_slider"] = st.session_state.get(f"{prefix}_slider_temp")
-
+    st.session_state[f"{prefix}_scenario"] = st.session_state.get(f"{prefix}_scenario_temp")
     if f"{prefix}_var_temp" in st.session_state:
         st.session_state[f"{prefix}_var"] = st.session_state.get(f"{prefix}_var_temp")
     else:
@@ -413,8 +424,14 @@ def show_sandwave_tool():
         # DROPDOWN (always shown)
         # ---------------------------------------------------------
         st.selectbox(
-            "Jaar simulatie",
-            #["Referentie", "2012", "2027", "2040"],
+            "Scenario",
+            ["WindFarm", "SandPit"],
+            key=f"{prefix}_scenario_temp"
+        )
+    
+            
+        st.selectbox(
+            "Scenario year",
             ["ref", "2027", "2040"],
             key=f"{prefix}_year_temp"
         )
@@ -507,6 +524,7 @@ def show_sandwave_tool():
             "overs": st.session_state.get("fig1_overs"),
             "slider": st.session_state.get("fig1_slider"),
             "variable": st.session_state.get("fig1_var"),
+            "scenario": st.session_state.get("fig1_scenario")
         }
     
         if settings_left["button"] and settings_left["year"]:
@@ -554,6 +572,7 @@ def show_sandwave_tool():
             "overs": st.session_state.get("fig2_overs"),
             "slider": st.session_state.get("fig2_slider"),
             "variable": st.session_state.get("fig2_var"),
+            "scenario": st.session_state.get("fig1_scenario")
         }
     
         if settings_right["button"] and settings_right["year"]:
@@ -586,4 +605,3 @@ def show_sandwave_tool():
             mime="application/zip",
             key = "download_right"
         )
-
