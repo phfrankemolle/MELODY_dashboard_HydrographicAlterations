@@ -578,7 +578,7 @@ def show_sandwave_tool():
             "variable": st.session_state.get("fig1_var"),
             "scenario": st.session_state.get("fig1_scenario")
         }
-        if st.session_state.get("fig1_button_temp") == "Bathymetrie":
+        if st.session_state.get("fig1_button") == "Bathymetrie":
             st.write(st.session_state.get("fig1_button")+" van scenario "+st.session_state.get("fig1_scenario")+" "+st.session_state.get("fig1_year"))
         else:
             st.write(st.session_state.get("fig1_scenario")+" "+st.session_state.get("fig1_year") +";")
@@ -630,7 +630,7 @@ def show_sandwave_tool():
             "variable": st.session_state.get("fig2_var"),
             "scenario": st.session_state.get("fig2_scenario")
         }
-        if st.session_state.get("fig2_button_temp") == "Bathymetrie":
+        if st.session_state.get("fig2_button") == "Bathymetrie":
             st.write(st.session_state.get("fig2_button")+" van scenario "+st.session_state.get("fig2_scenario")+" "+st.session_state.get("fig2_year"))
         else:
             st.write(st.session_state.get("fig2_scenario")+" "+st.session_state.get("fig2_year") +";")
