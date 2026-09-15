@@ -530,7 +530,8 @@ def show_sandwave_tool():
             if st.button("Toepassen", key="apply_both"):
                 commit_settings("fig1")
                 commit_settings("fig2")
-        st.write(settings)
+    st.write(settings)
+        
         # --- THIRD: Now read committed values and render figures ---
     col1_fig, col2_fig = st.columns(2)
     
