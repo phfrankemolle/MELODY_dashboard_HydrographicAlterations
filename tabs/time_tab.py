@@ -7,8 +7,12 @@ SCEN_MAP = {
     "2027": "2027",
     "2040": "2040",
 }
+SCENARIO_MAP{
+    "Wind Farms": "WindFarm",
+    "Sand Pits": "SandPit",
+}
 
-TIME_BACKGROUND = "Data2/Time/Background.jpg"
+TIME_BACKGROUND = "Data2/WindFarm/Time/Background.jpg"
 
 def stack_timeseries_images(paths, background_path=TIME_BACKGROUND):
     """
@@ -32,7 +36,7 @@ def stack_timeseries_images(paths, background_path=TIME_BACKGROUND):
 
 
 
-def resolve_timeseries_path(var, scen, station):
+def resolve_timeseries_path(var, scen, station,scenario_folder):
     var_letter = {
         "Snelheid": "U",
         "Temperatuur": "T",
@@ -49,11 +53,14 @@ def resolve_timeseries_path(var, scen, station):
     filename = f"{var_letter}_{station}.png"
 
     return os.path.join(
-        "Data2", "Time",
+        "Data2",
+        scenario_folder,
+        "Time",
         var,
         scen_folder,
         filename
-    )
+)
+
 
 STATIONS = [
     "Doordewind I",
@@ -84,6 +91,12 @@ def show_time_series():
         col1, col2 = st.columns([2, 1])
     
         with col1:
+            scenario_label = st.selectbox(
+                "Scenario type",
+                list(SCENARIO_MAP.keys()),
+                key="ts_scenario"
+            )
+            scenario_folder = SCENARIO_MAP[scenario_label]
             var = st.selectbox(
                 "Variabele",
                 ["Snelheid", "Temperatuur", "Saliniteit"],
@@ -118,9 +131,14 @@ def show_time_series():
         return
 
     paths = [
-        resolve_timeseries_path(var, scen, station)
+        resolve_timeseries_path(
+            var,
+            scen,
+            station,
+            scenario_folder
+    )
         for scen in selected_scenarios
-    ]
+]
 
     img = stack_timeseries_images(paths)
 
