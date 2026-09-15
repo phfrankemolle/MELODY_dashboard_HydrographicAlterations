@@ -507,6 +507,7 @@ def show_sandwave_tool():
             "overs": st.session_state.get(f"{prefix}_overs"),
             "slider": st.session_state.get(f"{prefix}_slider"),
             "variable": st.session_state.get(f"{prefix}_var"),
+            "scenario": st.session_state.get(f"{prefix}_scenario"),
         }
     # ---------------------------------------------------------
     # TWO COLUMNS
