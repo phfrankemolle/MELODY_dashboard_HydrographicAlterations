@@ -436,19 +436,20 @@ def show_sandwave_tool():
         
         col1, col2 = st.columns([2,2])
         with col1:
-            st.selectbox(
+            scen_label = st.selectbox(
                 "Scenario",
                 list(scen_map.keys()),
                 key=f"{prefix}_scenario_temp"
             )
     
         with col2:    
-            st.selectbox(
+            scen_y_label = st.selectbox(
                 "Scenario year",
                 list(scen_y_map.keys()),
                 key=f"{prefix}_year_temp"
             )
-
+        scenario = scen_map[scen_label]
+        year = scen_y_map[scen_y_label]
         # ---------------------------------------------------------
         # TOGGLES (always shown)
         # ---------------------------------------------------------
