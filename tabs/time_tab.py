@@ -39,7 +39,7 @@ def stack_timeseries_images(paths, background_path=TIME_BACKGROUND):
 def resolve_timeseries_path(var, scen, station,scenario_folder):
     var_letter = {
         "Snelheid": "U",
-        "Tematuur": "T",
+        "Temperatuur": "T",
         "Saliniteit": "S",
     }.get(var)
 
