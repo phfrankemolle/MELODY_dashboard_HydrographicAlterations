@@ -59,7 +59,7 @@ def resolve_base_path(settings):
     return os.path.join(
         data_root(settings), "Base",
         main,
-        str(year),
+        year_token,
         filename
     )
 
