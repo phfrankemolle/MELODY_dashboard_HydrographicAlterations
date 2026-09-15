@@ -39,8 +39,10 @@ def resolve_base_path(settings):
     prefix_map = {
         "Temperatuur": "T",
         "Saliniteit": "S",
-        "Snelheid": "U",      # ← example, change if needed (U/V, Vel, etc.)
+        "Snelheid": "U",   
     }
+
+    
     prefix = prefix_map.get(main)
     suffix = var_map.get(var)
 
@@ -423,19 +425,26 @@ def show_sandwave_tool():
         # ---------------------------------------------------------
         # DROPDOWN (always shown)
         # ---------------------------------------------------------
+        scen_map = {
+        "Wind Farms": "WindFarm",
+        "Sand Pits": "SandPit",
+        }
+        scen_y_map = {
+        "2012": "ref",
+        "2027": "2027",
+        "2040": "2040"}
+        
         col1, col2 = st.columns([2,2])
         with col1:
             st.selectbox(
                 "Scenario",
-                ["Wind Farms", "Sand Pits"],
-                key=f"{prefix}_scenario_temp"
+                list(scen_map.keys())
             )
     
         with col2:    
             st.selectbox(
                 "Scenario year",
-                ["ref", "2027", "2040"],
-                key=f"{prefix}_year_temp"
+                list(scen_y_map.keys())
             )
 
         # ---------------------------------------------------------
