@@ -34,7 +34,36 @@ def stack_timeseries_images(paths, background_path=TIME_BACKGROUND):
 
     return base
 
+def trim_white_border(img, threshold=245, buffer_px=0):
+    """
+    Trim white (or near-white) borders from an RGB/RGBA image.
+    threshold: how close to white a pixel must be (0–255)
+    """
+    arr = np.array(img)
 
+     Drop alpha if present
+    if arr.shape[2] == 4:
+        rgb = arr[:, :, :3]
+    else:
+        rgb = arr
+
+    # Mask: True where pixel is NOT white
+    non_white = np.any(rgb < threshold, axis=2)
+
+    if not non_white.any():
+        return img  # nothing to crop
+
+    coords = np.column_stack(np.where(non_white))
+    y_min, x_min = coords.min(axis=0)
+    y_max, x_max = coords.max(axis=0)
+    
+    # Apply buffer and clamp to image bounds
+    x_min = max(0, x_min - buffer_px)
+    y_min = max(0, y_min - buffer_px)
+    x_max = min(img.width,  x_max + buffer_px + 1)
+    y_max = min(img.height, y_max + buffer_px + 1)
+    st.write(x_min, y_min, x_max + 1, y_max + 1)
+    return img.crop((x_min, y_min, x_max, y_max))
 
 def resolve_timeseries_path(var, scen, station,scenario_folder):
     var_letter = {
@@ -115,6 +144,17 @@ def show_time_series():
             scen_ref = st.checkbox("🔵 Referentie", value=True, key="ts_ref")
             scen_2027 = st.checkbox("🟡 2027", value=False, key="ts_2027")
             scen_2040 = st.checkbox("🔴 2040", value=False, key="ts_2040")
+        #PLOTTING THE STATION IMAGES
+        station_img = os.path.join(
+            "Data2",
+            "WindFarm",
+            "Time",
+            "Stations",
+            f"{station}.jpg"
+        )
+        
+        if os.path.exists(station_img):
+            st.image(trim_white_border(station_img), use_container_width=True)
 
     selected_scenarios = []
     if scen_ref:
