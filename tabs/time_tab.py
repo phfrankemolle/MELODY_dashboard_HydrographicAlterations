@@ -154,8 +154,8 @@ def show_time_series():
         )
         
         if os.path.exists(station_img):
-            img_station = Image.open(station_img).convert("RGBA")
-            img_station = trim_white_border(img_station)
+            #img_station = Image.open(station_img).convert("RGBA")
+            #img_station = trim_white_border(img_station)
             st.image(img_station, use_container_width=True)
 
     selected_scenarios = []
