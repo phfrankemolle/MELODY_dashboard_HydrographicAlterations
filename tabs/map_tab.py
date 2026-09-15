@@ -652,12 +652,6 @@ def show_sandwave_tool():
             "variable": st.session_state.get("fig2_var"),
             "scenario": st.session_state.get("fig2_scenario")
         }
-        if st.session_state.get("fig2_button") == "Bathymetrie":
-            
-            st.write(st.session_state.get("fig2_button")+" van scenario "+st.session_state.get("fig2_scenario")+" "+st.session_state.get("fig2_year"))
-        else:
-            st.write(st.session_state.get("fig2_scenario")+" "+st.session_state.get("fig2_year") +";")
-            st.write(st.session_state.get("fig2_button")+" "+st.session_state.get("fig2_var"))
         if settings_right["button"] and settings_right["year"]:
             base_path = resolve_base_path(settings_right)
             wind_path = resolve_wind_overlay(settings_right)
