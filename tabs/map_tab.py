@@ -199,7 +199,7 @@ def trim_white_border(img, threshold=245, buffer_px=20):
     return img.crop((x_min, y_min, x_max + 1, y_max + 1))
 
 
-def compose_layers(
+def compose_layers(settings,
     base_path,
     eez=False,
     wind_path=None,
@@ -560,7 +560,7 @@ def show_sandwave_tool():
             base_path = resolve_base_path(settings_left)
             wind_path = resolve_wind_overlay(settings_left)
             threshold_path = resolve_threshold_overlay(settings_left)
-            img = compose_layers(base_path, eez=settings_left["eez"], wind_path=wind_path,threshold_path=threshold_path)
+            img = compose_layers(settings_left, base_path, eez=settings_left["eez"], wind_path=wind_path,threshold_path=threshold_path)
             st.image(img, width="stretch")
         
         # Always determine gpkg_path (may be None)
@@ -608,7 +608,7 @@ def show_sandwave_tool():
             base_path = resolve_base_path(settings_right)
             wind_path = resolve_wind_overlay(settings_right)
             threshold_path = resolve_threshold_overlay(settings_right)
-            img = compose_layers(base_path, eez=settings_right["eez"], wind_path=wind_path, threshold_path=threshold_path)
+            img = compose_layers(settings_right, base_path, eez=settings_right["eez"], wind_path=wind_path, threshold_path=threshold_path)
             st.image(img, width="stretch")
 
          # Always determine gpkg_path (may be None)
