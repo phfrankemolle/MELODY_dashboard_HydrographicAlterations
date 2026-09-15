@@ -196,7 +196,7 @@ def trim_white_border(img, threshold=245, buffer_px=20):
     y_min = max(0, y_min - buffer_px)
     x_max = min(img.width,  x_max + buffer_px + 1)
     y_max = min(img.height, y_max + buffer_px + 1)
-
+    st.write(x_min, y_min, x_max + 1, y_max + 1)
     return img.crop((x_min, y_min, x_max + 1, y_max + 1))
 
 
