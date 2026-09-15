@@ -282,6 +282,7 @@ def show_sandwave_tool():
     defa_but= "Temperatuur"
     defa_var= "Verschil stratificatie t.o.v. referentie"
     defa_yr = "2027"
+    defa_scen ="Wind Farms"
     if "fig1_button" not in st.session_state:
         st.session_state["fig1_button"] = defa_but
     if "fig2_button" not in st.session_state:
@@ -311,6 +312,11 @@ def show_sandwave_tool():
         st.session_state["fig1_year_temp"] = defa_yr
     if "fig2_year_temp" not in st.session_state:
         st.session_state["fig2_year_temp"] = defa_yr
+
+    if "fig1_year_temp" not in st.session_state:
+        st.session_state["fig1_scen_temp"] = defa_scen
+    if "fig2_year_temp" not in st.session_state:
+        st.session_state["fig2_scen_temp"] = defa_scen
     # ---------------------------------------------------------
     # CSS (kept, but no longer used for buttons — harmless)
     # ---------------------------------------------------------
