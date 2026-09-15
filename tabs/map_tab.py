@@ -393,16 +393,6 @@ def show_sandwave_tool():
                 "Relatieve verschil stratificatie t.o.v. referentie",
             ])
         
-        snelheid_vars = [
-            "Bodem",
-        ]
-        
-        if selected_year != "2012":
-            snelheid_vars.extend([
-                "Verschil t.o.v. referentie",
-                "Relatieve verschil t.o.v. referentie"
-            ])
-        
         temp_saliniteit_desc = {
             "Oppervlakte": "Gemiddelde waarde in de waterkolom vlak onder het wateroppervlak",
             "Bodem": "Gemiddelde waarde in de waterkolom vlak boven de bodem",
@@ -413,9 +403,13 @@ def show_sandwave_tool():
 
         snelheid_vars = [
             "Bodem",
-            "Verschil t.o.v. referentie",
-            "Relatieve verschil t.o.v. referentie"
         ]
+        
+        if selected_year != "2012":
+            snelheid_vars.extend([
+                "Verschil t.o.v. referentie",
+                "Relatieve verschil t.o.v. referentie"
+            ])
         snelheid_desc = {
             "Bodem": "Magnitude van de residuele bodemsnelheid",
             "Verschil t.o.v. referentie": "Het verschil tussen de residuele bodemsnelheid in het gekozen jaar en het referentiejaar (2012)-> (jaar-ref)",
