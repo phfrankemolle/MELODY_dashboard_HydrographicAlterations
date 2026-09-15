@@ -535,7 +535,6 @@ def show_sandwave_tool():
             if st.button("Toepassen", key="apply_both"):
                 commit_settings("fig1")
                 commit_settings("fig2")
-    st.write(st.session_state)
         
         # --- THIRD: Now read committed values and render figures ---
     col1_fig, col2_fig = st.columns(2)
@@ -554,6 +553,10 @@ def show_sandwave_tool():
         }
     
         if settings_left["button"] and settings_left["year"]:
+            st.write(
+                "fig1 scenario:",
+                st.session_state.get("fig1_scenario")
+            )
             base_path = resolve_base_path(settings_left)
             wind_path = resolve_wind_overlay(settings_left)
             threshold_path = resolve_threshold_overlay(settings_left)
