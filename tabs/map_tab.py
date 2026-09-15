@@ -319,9 +319,9 @@ def show_sandwave_tool():
     if "fig2_year_temp" not in st.session_state:
         st.session_state["fig2_year_temp"] = defa_yr
 
-    if "fig1_year_temp" not in st.session_state:
+    if "fig1_scenario_temp" not in st.session_state:
         st.session_state["fig1_scenario_temp"] = defa_scen
-    if "fig2_year_temp" not in st.session_state:
+    if "fig2_scenario_temp" not in st.session_state:
         st.session_state["fig2_scenario_temp"] = defa_scen
     # ---------------------------------------------------------
     # CSS (kept, but no longer used for buttons — harmless)
