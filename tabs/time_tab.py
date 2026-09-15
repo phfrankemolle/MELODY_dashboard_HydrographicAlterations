@@ -39,7 +39,7 @@ def stack_timeseries_images(paths, background_path=TIME_BACKGROUND):
 def resolve_timeseries_path(var, scen, station,scenario_folder):
     var_letter = {
         "Snelheid": "U",
-        "Temperatuur": "T",
+        "Tematuur": "T",
         "Saliniteit": "S",
     }.get(var)
 
@@ -86,7 +86,7 @@ STATIONS = [
 ]
 def show_time_series():
 
-    st.subheader("Tijdseries per locatie")
+    #st.subheader("Tijdseries per locatie")
     with st.sidebar:
         col1, col2 = st.columns([2, 1])
     
