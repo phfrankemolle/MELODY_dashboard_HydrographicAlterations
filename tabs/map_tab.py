@@ -516,7 +516,20 @@ def show_sandwave_tool():
         # TOGGLES (always shown)
         # ---------------------------------------------------------
         st.toggle("EEZ", key=f"{prefix}_eez_temp")
-        show_wind = st.toggle("Windparken", key=f"{prefix}_wind_temp")       
+        col1, col2 = st.columns([2, 2])
+
+        with col1:
+            show_wind = st.toggle(
+                "Windparken",
+                key=f"{prefix}_wind_temp"
+            )
+        
+        with col2:
+            show_sandpit = st.toggle(
+                "Zandputten",
+                key=f"{prefix}_sandpit_temp"
+            )
+#        show_wind = st.toggle("Windparken", key=f"{prefix}_wind_temp")       
 #        col1, col2 = st.columns([3, 1]) #windfarm toggle 
 #        
 #        with col1:
