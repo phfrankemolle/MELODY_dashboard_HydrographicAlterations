@@ -513,11 +513,11 @@ def show_sandwave_tool():
             var  = st.session_state.get(f"{prefix}_var_temp")
         
             # Default threshold values
-            slider_options = ["none", 0.05, 0.1, 0.2, 0.3]
+            slider_options = ["none", .05,.5,.1,1.5,.2,.25,.3]
         
             # Special case: Snelheid + diff
             if main == "Snelheid" and var == "Verschil t.o.v. referentie":
-                slider_options = ["none",.001,.002,.005,.01]
+                slider_options = ["none",.001,.002,.003,.004,.005,.0075,.01]
         
             st.select_slider(
                 "Selecteer waarde",
