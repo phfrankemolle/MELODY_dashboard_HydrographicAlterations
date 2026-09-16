@@ -122,6 +122,27 @@ def resolve_wind_overlay(settings):
         data_root(settings), "Overlay", "windmill",
         filename
     )
+def resolve_sandpit_overlay(settings):
+    year = settings["year"]
+
+    # Toggle off
+    if not settings.get("sandpit"):
+        return None
+
+    # No layer if year is missing
+    if year is None:
+        return None
+
+    # Map reference year to file naming convention
+    year_token = "2012" if year == "2012" else str(year)
+
+    return os.path.join(
+        "Data2",
+        "SandPit",
+        "Overlay",
+        "sandpits",
+        f"{year_token}.png"
+    )
 
 def resolve_threshold_overlay(settings):
     
@@ -201,10 +222,11 @@ def trim_white_border(img, threshold=245, buffer_px=20):
     return img.crop((x_min, y_min, x_max + 1, y_max + 1))
 
 
-def compose_layers(settings,
+def compose_layers(
     base_path,
     eez=False,
     wind_path=None,
+    sandpit_path=None,
     threshold_path=None,
 ):
     img = Image.open(base_path).convert("RGBA")
@@ -219,6 +241,10 @@ def compose_layers(settings,
         overlay = Image.open(wind_path).convert("RGBA")
         img = Image.alpha_composite(img, overlay)
 
+    # 2.5 Sand pits
+    if sandpit_path and os.path.exists(sandpit_path):
+        overlay = Image.open(sandpit_path).convert("RGBA")
+        img = Image.alpha_composite(img, overlay)
     # 3. Threshold (top layer)
     if threshold_path and os.path.exists(threshold_path):
         overlay = Image.open(threshold_path).convert("RGBA")
@@ -608,7 +634,16 @@ def show_sandwave_tool():
         if settings_left["button"] and settings_left["year"]:
             base_path = resolve_base_path(settings_left)
             wind_path = resolve_wind_overlay(settings_left)
+            sandpit_path = resolve_sandpit_overlay(settings_left)
             threshold_path = resolve_threshold_overlay(settings_left)
+            
+            img = compose_layers(
+                base_path,
+                eez=settings_left["eez"],
+                wind_path=wind_path,
+                sandpit_path=sandpit_path,
+                threshold_path=threshold_path,
+            )
             img = compose_layers(settings_left, base_path, eez=settings_left["eez"], wind_path=wind_path,threshold_path=threshold_path)
             st.image(img, width="stretch")
         
@@ -655,9 +690,17 @@ def show_sandwave_tool():
         if settings_right["button"] and settings_right["year"]:
             base_path = resolve_base_path(settings_right)
             wind_path = resolve_wind_overlay(settings_right)
+            sandpit_path = resolve_sandpit_overlay(settings_right)
             threshold_path = resolve_threshold_overlay(settings_right)
-            img = compose_layers(settings_right, base_path, eez=settings_right["eez"], wind_path=wind_path, threshold_path=threshold_path)
-            st.image(img, width="stretch")
+            
+            img = compose_layers(
+                base_path,
+                eez=settings_right["eez"],
+                wind_path=wind_path,
+                sandpit_path=sandpit_path,
+                threshold_path=threshold_path,
+            )
+            img = compose_layers(settings_right, base_path, eez=settings_right["eez"], wind_path=wind_path,threshold_path=threshold_path)
 
          # Always determine gpkg_path (may be None)
         gpkg_path = None
