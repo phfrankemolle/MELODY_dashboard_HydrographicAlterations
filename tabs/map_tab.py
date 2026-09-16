@@ -302,6 +302,7 @@ def commit_settings(prefix):
     st.session_state[f"{prefix}_overs"] = st.session_state.get(f"{prefix}_overs_temp")
     st.session_state[f"{prefix}_slider"] = st.session_state.get(f"{prefix}_slider_temp")
     st.session_state[f"{prefix}_scenario"] = st.session_state.get(f"{prefix}_scenario_temp")
+    st.session_state[f"{prefix}_sandpit"] = st.session_state.get(f"{prefix}_sandpit_temp")
     if f"{prefix}_var_temp" in st.session_state:
         st.session_state[f"{prefix}_var"] = st.session_state.get(f"{prefix}_var_temp")
     else:
