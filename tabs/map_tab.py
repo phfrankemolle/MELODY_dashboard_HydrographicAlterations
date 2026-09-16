@@ -223,6 +223,7 @@ def trim_white_border(img, threshold=245, buffer_px=20):
 
 
 def compose_layers(
+    settings,
     base_path,
     eez=False,
     wind_path=None,
@@ -653,6 +654,7 @@ def show_sandwave_tool():
             threshold_path = resolve_threshold_overlay(settings_left)
             
             img = compose_layers(
+                settings_left,
                 base_path,
                 eez=settings_left["eez"],
                 wind_path=wind_path,
@@ -710,6 +712,7 @@ def show_sandwave_tool():
             threshold_path = resolve_threshold_overlay(settings_right)
             
             img = compose_layers(
+                settings_right,
                 base_path,
                 eez=settings_right["eez"],
                 wind_path=wind_path,
