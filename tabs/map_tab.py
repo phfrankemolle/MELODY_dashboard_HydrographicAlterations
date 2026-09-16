@@ -642,7 +642,8 @@ def show_sandwave_tool():
             "overs": st.session_state.get("fig1_overs"),
             "slider": st.session_state.get("fig1_slider"),
             "variable": st.session_state.get("fig1_var"),
-            "scenario": st.session_state.get("fig1_scenario")
+            "scenario": st.session_state.get("fig1_scenario"),
+            "sandpit": st.session_state.get("fig1_sandpit")
         }
 
         if settings_left["button"] and settings_left["year"]:
@@ -699,7 +700,8 @@ def show_sandwave_tool():
             "overs": st.session_state.get("fig2_overs"),
             "slider": st.session_state.get("fig2_slider"),
             "variable": st.session_state.get("fig2_var"),
-            "scenario": st.session_state.get("fig2_scenario")
+            "scenario": st.session_state.get("fig2_scenario"),
+            "sandpit": st.session_state.get("fig2_sandpit")
         }
         if settings_right["button"] and settings_right["year"]:
             base_path = resolve_base_path(settings_right)
