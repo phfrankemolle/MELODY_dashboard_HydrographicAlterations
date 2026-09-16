@@ -657,7 +657,7 @@ def show_sandwave_tool():
                 sandpit_path=sandpit_path,
                 threshold_path=threshold_path,
             )
-            img = compose_layers(settings_left, base_path, eez=settings_left["eez"], wind_path=wind_path,threshold_path=threshold_path)
+            #img = compose_layers(settings_left, base_path, eez=settings_left["eez"], wind_path=wind_path,threshold_path=threshold_path)
             st.image(img, width="stretch")
         
         # Always determine gpkg_path (may be None)
@@ -713,7 +713,7 @@ def show_sandwave_tool():
                 sandpit_path=sandpit_path,
                 threshold_path=threshold_path,
             )
-            img = compose_layers(settings_right, base_path, eez=settings_right["eez"], wind_path=wind_path,threshold_path=threshold_path)
+            #img = compose_layers(settings_right, base_path, eez=settings_right["eez"], wind_path=wind_path,threshold_path=threshold_path)
 
          # Always determine gpkg_path (may be None)
         gpkg_path = None
